@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOROHEDORO</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>DOROHEDORO CHARACTERS</h1>
+        <div class="grid">
+            <div class="in-grid">
+                <h2 id="character-name">SHIN</h2>
+                <img src="new shin.jpg" width="200" height="200" alt="shin">
+                <div id="price">0.0001 GoerliETH</div>
+                <button id="btnBuy" onclick="btnBuy('Shin', 100000000000000)">Buy</button>
+            </div>
+            <div class="in-grid">
+                <h2 id="character-name">EN</h2>
+                <img src="new en.jpg" width="200" height="200" alt="en">
+                <div id="price">0.0001 GoerliETH</div>
+                <button id="btnBuy" onclick="btnBuy('En', 100000000000000)">Buy</button>
+            </div>
+
+            <div class="in-grid">
+                <h2 id="character-name">NOI</h2>
+                <img src="new noi.jpg" width="200" height="200" alt="noi">
+                <div id="price">0.0001 GoerliETH</div>
+                <button id="btnBuy" onclick="btnBuy('Noi', 100000000000000)">Buy</button>
+            </div>
+            <div class="in-grid">
+                <h2 id="character-name">FUJITA</h2>
+                <img src="new fujita.jpg" width="200" height="200" alt="fujita">
+                <div id="price">0.0001 GoerliETH</div>
+                <button id="btnBuy" onclick="btnBuy('Fujita', 100000000000000)">Buy</button>
+            </div>
+            <div class="in-grid">
+                <h2 id="character-name">EBISU</h2>
+                <img src="new ebisu.jpg" width="200" height="200" alt="ebisu">
+                <div id="price">0.0001 GoerliETH</div>
+                <button id="btnBuy" onclick="btnBuy('Ebisu', 100000000000000)">Buy</button>
+            </div>
+            <div class="in-grid">
+                <h2 id="character-name">CHOTA</h2>
+                <img src="new chota.jpg" width="200" height="200" alt="chota">
+                <div id="price">0.0001 GoerliETH</div>
+                <button id="btnBuy" onclick="btnBuy('Chota', 100000000000000)">Buy</button>
+            </div>
+            <div class="in-grid">
+                <h2 id="character-name">KAIMAN</h2>
+                <img src="new kaiman.jpg" width="200" height="200" alt="kaiman">
+                <div id="price">0.0001 GoerliETH</div>
+                <button id="btnBuy" onclick="btnBuy('Kaiman', 100000000000000)">Buy</button>
+            </div>
+            <div class="in-grid">
+                <h2 id="character-name">NIKAIDO</h2>
+                <img src="new nikaido.jpg" width="200" height="200" alt="nikaido">
+                <div id="price">0.0001 GoerliETH</div>
+                <button id="btnBuy" onclick="btnBuy('Nikaido', 100000000000000)">Buy</button>
+            </div>
+        </div>
+        <div class="container2">
+            <table width="85%" height="500">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Character</th>
+                        <th>Owner</th>
+                    </tr>
+                    <tr>
+                        <td id="time1"></td>
+                        <td id="character1"></td>
+                        <td id="owner1"></td>
+                    </tr>
+                    <tr>
+                        <td id="time2"></td>
+                        <td id="character2"></td>
+                        <td id="owner2"></td>
+                    </tr>
+                    <tr>
+                        <td id="time3"></td>
+                        <td id="character3"></td>
+                        <td id="owner3"></td>
+                    </tr>
+                    <tr>
+                        <td id="time4"></td>
+                        <td id="character4"></td>
+                        <td id="owner4"></td>
+                    </tr>
+                    <tr>
+                        <td id="time5"></td>
+                        <td id="character5"></td>
+                        <td id="owner5"></td>
+                    </tr>
+                    <tr>
+                        <td id="time6"></td>
+                        <td id="character6"></td>
+                        <td id="owner6"></td>
+                    </tr>
+                    <tr>
+                        <td id="time7"></td>
+                        <td id="character7"></td>
+                        <td id="owner7"></td>
+                    </tr>
+                    <tr>
+                        <td id="time8"></td>
+                        <td id="character8"></td>
+                        <td id="owner8"></td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+    <script>
+        async function loadWeb3() {
+            if (window.ethereum) {
+                web3 = new Web3(window.ethereum);
+                ethereum
+                    .request({ method: 'eth_requestAccounts' })
+                    .then(handleAccountsChanged)
+                    .catch((err) => {
+                        if (err.code === 4001) {
+                            console.log('Please connect to MetaMask.');
+                        } else {
+                            console.error(err);
+                        }
+                    });
+            }
+        }
+
+        let currentAccount = null;
+
+
+        window.ethereum.on('accountsChanged', handleAccountsChanged);
+
+        function handleAccountsChanged(accounts) {
+            if (accounts.length === 0) {
+                console.log('Please connect to MetaMask.');
+            } else if (accounts[0] !== currentAccount) {
+                currentAccount = accounts[0];
+            }
+        }
+
+        let abi = [
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": false,
+                        "internalType": "address",
+                        "name": "owner",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "character",
+                        "type": "string"
+                    }
+                ],
+                "name": "Add",
+                "type": "event"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "string",
+                        "name": "character",
+                        "type": "string"
+                    }
+                ],
+                "name": "buy_character",
+                "outputs": [],
+                "stateMutability": "payable",
+                "type": "function"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": false,
+                        "internalType": "address",
+                        "name": "from",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "text",
+                        "type": "string"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "reason",
+                        "type": "string"
+                    }
+                ],
+                "name": "BuyError",
+                "type": "event"
+            }
+        ];
+
+        async function loadContract() {
+            return await new web3.eth.Contract(abi, '0x7D91A37384551511855DF217a804344db96e5e39');
+        }
+
+        async function load() {
+            await loadWeb3();
+            web3.contract = await loadContract();
+        }
+
+        var i = 0;
+
+        function btnBuy(name, eth) {
+            console.log(currentAccount);
+            web3.contract.methods
+                .buy_character(name)
+                .send({ from: currentAccount, value: eth }, function (error, result) {
+                    $("#result").html(result);
+                });
+            web3.contract.once("Add", {}, function (error, event) {
+                if (!error) {
+                    console.log(event);
+                    var h = new Date().getHours();
+                    var m = new Date().getMinutes();
+                    $("#result").html(
+                        "Name:" +
+                        event.returnValues.character +
+                        "<br/>time:" +
+                        h +
+                        ":" +
+                        m +
+                        "<br/>owner:" +
+                        event.returnValues.owner
+                    );
+                    i++;
+                    $("#time" + i).html(h + ":" + m);
+                    $("#character" + i).html(event.returnValues.character);
+                    $("#owner" + i).html(event.returnValues.owner);
+                }
+            });
+        }
+        load();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+body {
+    background-color: #F0F0F0;
+    padding: 2em;
+    font-family: 'Raleway', 'Source Sans Pro', 'Arial';
+}
+
+.container {
+    width: 95%;
+    margin: 0 auto;
+}
+.container2 {
+    width: 95%;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input {
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+button {
+    margin: 2em 0;
+    padding: 1em 4em;
+    display: block;
+    font-size: medium;
+}
+
+#result {
+    padding: 1em;
+    background-color: #fff;
+    margin: 1em 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+
+}
+
+/* .in-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+} */
+
+.item {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+}
+
+
+.item h2 {
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    
+}
+
+.item button {
+    position: relative;
+    bottom: 0;
+    left: auto;
+    right: auto;
+    transform: translateX(-50%);
+
+    
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+}
